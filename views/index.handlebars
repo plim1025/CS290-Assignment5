@@ -4,8 +4,12 @@
   {{/each}}
 </main>
 
-<button type="button" id="create-twit-button"><i class="fas fa-bullhorn"></i></button>
 
+{{#if displayButton}}
+<button type="button" id="create-twit-button"><i class="fas fa-bullhorn"></i></button>
+{{/if}}
+
+{{#if displayModal}}
 <div id="modal-backdrop" class="hidden"></div>
 <div id="create-twit-modal" class="hidden">
   <div class="modal-dialog">
@@ -33,3 +37,4 @@
 
   </div>
 </div>
+{{/if}}

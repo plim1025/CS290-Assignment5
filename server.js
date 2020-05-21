@@ -17,9 +17,16 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.render('index', {twitData: twitData});
+  res.render('index', {twitData: twitData, displayButton: true, displayModal: true});
   res.status(200);
 });
+
+for(let i = 0; i < twitData.length; i++) {
+  app.get('/twits/' + i, (req, res) => {
+    res.render('index', {twitData: [twitData[i]], displayButton: false, displayModal: false});
+    res.status(200);
+  });
+}
 
 app.get('*', (req, res) => {
   res.render('404');
