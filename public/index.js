@@ -33,11 +33,12 @@
  */
 function insertNewTwit(twitText, twitAuthor) {
   const twitContext = {
-    twitText: twitText,
-    twitAuthor: twitAuthor
+    text: twitText,
+    author: twitAuthor
   }
   const twit = Handlebars.templates.twit(twitContext);
   const twitContainer = document.getElementsByClassName('twit-container')[0];
+  console.log(twitContainer, twitText, twitAuthor);
   twitContainer.insertAdjacentHTML('beforeend', twit);
 }
 

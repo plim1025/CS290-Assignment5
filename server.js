@@ -6,18 +6,26 @@
  * Email: limp@oregonstate.edu
  */
 
-var path = require('path');
-var express = require('express');
+const path = require('path');
+const express = require('express');
+const exphbs = require('express-handlebars');
+const twitData = require('./twitData.json');
 
-var app = express();
-var port = process.env.PORT || 3000;
+const app = express();
+const port = process.env.PORT || 3000;
 
+app.engine('handlebars', exphbs({defaultLayout: null}));
+app.set('view engine', 'handlebars');
+app.set('views', __dirname + '/views');
 app.use(express.static('public'));
 
-app.get('*', function (req, res) {
+app.get('/', (req, res) => {
+  res.render('index', {twitData: twitData});
+  res.status(200);
+});
+
+app.get('*', (req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-app.listen(port, function () {
-  console.log("== Server is listening on port", port);
-});
+app.listen(port, () => console.log("== Server is listening on port", port));
